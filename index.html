@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site</title>
+    <title>Calculo IMC</title>
+    <link rel="stylesheet" href="visual.css">
+    <script src="calcu.js"></script>
+
 </head>
+
 <body>
-    <h1>Hoje</h1>
-    <ul>
-        <li>hmmm</li>
-    </ul>
+    <main class="fundo">
+        <h1> Meu calculo IMC </h1>
+
+        <form>
+            <div class="quadro">
+                <div class="campo">
+                    <label for="valor">Peso(kg): </label>
+                    <input type="number"
+                    min="1"
+                    max="300" 
+                    id="peso"
+                    step="0.1"
+                    placeholder="Ex: 75.5">
+                </div>
+
+                <div class="campo">
+                    <label for="desconto">Altura (metros): </label>
+                    <input type="number"
+                    min="0.5"
+                    max="3.0"
+                    id="altura"
+                    step="0.01"
+                    placeholder="Ex: 1.75">
+                </div>
+
+
+                <button type="button" onclick="calcularIMC()">Calcular</button>
+                
+                <div id="resultado"></div>
+            </div>
+        </form>
+
+    </main>
     
+  
+
 </body>
+
 </html>
