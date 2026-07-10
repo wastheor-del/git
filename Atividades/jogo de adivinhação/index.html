@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croneneib</title>
+    <link rel="stylesheet"  href="visual.css">
+</head>
+<body>
+    <div class="grupo">
+        <h1>Pequeno Cavaleiro</h1>
+        <p>Cada escolha errada é retirada<br>uma quantidade de 
+            vida.<br>Sobreviva a esse desafio.<br>Boa sorte.
+        </p>
+        <p>Escolha um caminho de (1 a 100).
+            <br>O correto vai te levar para a saída.
+            <br>O errado te levará para a derrota.
+        </p>
+
+        <div class="teclado">
+            <input type="number" id="numInput" min="1" max="100" placeholder="00">
+            <button id="btnEnvio" onclick="obsValor()">bloco</button>
+        </div>
+
+        <div class="mult-conteiner">
+            <div id="barProx" class="bar-prox"></div>
+        </div>
+
+        <p id="mensagem" class="mensagem"></p>
+        <p id="tentativas" class="tentativas">Tentativas: 0</p>
+        
+        <button id="btnReset" class="hidden" onclick="retornoJogo()">Jogue Novamente</button>
+    </div>
+
+    <script src="game.js"></script>
+    
+</body>
+</html>
