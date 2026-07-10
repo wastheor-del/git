@@ -1,0 +1,63 @@
+// 1. Corrigido o nome para matrizGast e adicionada a vírgula que faltava
+const matrizGast = [
+    ["Alimentação", 0], // <- Adicionada a vírgula aqui
+    ["Transporte", 0],
+    ["Lazer", 0],
+    ["Outros", 0],
+    ["Total", 0]
+];
+
+// Funções utilitárias
+// Corrigido: Agora passa o 'id' corretamente para o getElementById
+const pegarObj = (id) => document.getElementById(id); 
+const oposto = (valor) => valor < 0;
+const somaValor = (total, valor) => total + valor;
+// Corrigido: .value com 'v' minúsculo
+const limparLab = () => pegarObj('valor').value = ''; 
+
+// Obter valores do formulario
+// Corrigido: Convertendo o valor para número (parseFloat) e usando .value minúsculo
+const valorGuad = () => parseFloat(pegarObj("valor").value) || 0;
+const valorCategoria = () => pegarObj("categoria").value;
+
+// Obter categoria da matriz
+const pegarCategoria = (matriz, nomeCategoria) => matriz.find((item) => item[0] === nomeCategoria); 
+
+// Atualizar valores da matriz
+const pegarAtual = (categoria, valor) => categoria[1] = somaValor(categoria[1], valor);
+
+const atualInf = () => {
+    matrizGast.forEach(([nome, valor]) => {
+        const elemento = pegarObj(nome);
+        // Só atualiza se o elemento realmente existir no HTML
+        if (elemento) {
+            elemento.textContent = `${nome}: R$ ${valor.toFixed(2)}`;
+        }
+    });
+}
+
+function adicionarGasto(){
+    // 1 e 2. Pegar os valores informados corretamente
+    const valorInf = valorGuad();
+    const categoriaInf = valorCategoria();
+
+    // 3. Impedir números negativos
+    if(oposto(valorInf)){
+        alert("Valor inválido. O valor não pode ser negativo.");
+        return;
+    }
+
+    // 4. Buscar a categoria correta e o Total dentro da matrizGast
+    const categoria = pegarCategoria(matrizGast, categoriaInf);
+    const total = pegarCategoria(matrizGast, "Total");
+
+    // Se a categoria existir, atualiza os valores na matriz
+    if (categoria) {
+        pegarAtual(categoria, valorInf); // <- Corrigido: Passando valorInf
+        pegarAtual(total, valorInf);     // <- Corrigido: Passando valorInf
+    }
+
+    // 5 e 6. Atualizar a tela e limpar os campos
+    atualInf();
+    limparLab();
+}
